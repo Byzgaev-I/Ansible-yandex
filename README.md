@@ -53,7 +53,7 @@ Rule Violation Summary
      1 args[module]              syntax, experimental (warning)   
 
 Failed after min profile: 1 failure(s), 1 warning(s) on 1 files.  
-```</details> 
+</details>```
   
   
 
