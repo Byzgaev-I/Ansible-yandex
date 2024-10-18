@@ -104,8 +104,6 @@
             dest: "{{ vector_workdir }}/vector-{{ vector_version }}-{{ vector_os_arch }}-unknown-linux-gnu.tar.gz"
             mode: "0644"
 
-        # Остальные задачи остаются без изменений
-
 - name: Lighthouse
   hosts: lighthouse
   gather_facts: false
