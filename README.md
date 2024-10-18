@@ -33,7 +33,8 @@
 2) При создании tasks использовал модули: get_url, template, yum, apt.
 3) Tasks должны: скачать статику LightHouse, установить Nginx или любой другой веб-сервер, настроить его конфиг для открытия LightHouse, запустить веб-сервер.
 4) Подготовил свой inventory-файл prod.yml.
-   ![alt-текст](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Текст заголовка логотипа 1")
+   
+   ![site.yml]([https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Текст заголовка логотипа 1"](https://github.com/Byzgaev-I/Ansible-yandex/blob/main/site.yml))
 
 
 
