@@ -174,7 +174,7 @@ vector                 : ok=13   changed=5    unreachable=0    failed=0    skipp
 ```
 9) Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
 
- # Руководство по использованию Ansible Playbook для установки ClickHouse, Vector и Lighthouse
+## Руководство по использованию Ansible Playbook для установки ClickHouse, Vector и Lighthouse
 
 ## Описание
 
