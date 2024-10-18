@@ -25,3 +25,57 @@
 -  Подготовил в Yandex Cloud три хоста: для clickhouse, для vector и для lighthouse.
 
    ![image.jpg](https://github.com/Byzgaev-I/Ansible-yandex/blob/main/VM%20Yandex.png)
+
+
+### Выполнение заданий
+
+1) Дописал playbook и сделал ещё один play, который устанавливает и настраивает LightHouse.
+2) При создании tasks использовал модули: get_url, template, yum, apt.
+3) Tasks должны: скачать статику LightHouse, установить Nginx или любой другой веб-сервер, настроить его конфиг для открытия LightHouse, запустить веб-сервер.
+4) Подготовил свой inventory-файл prod.yml.
+   ![alt-текст](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Текст заголовка логотипа 1")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
