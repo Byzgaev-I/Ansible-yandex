@@ -249,8 +249,8 @@ vector                 : ok=13   changed=5    unreachable=0    failed=0    skipp
 - В случае необходимости, вы можете изменить параметры служб ClickHouse, Vector и Lighthouse, редактируя соответствующие файлы конфигурации и перезапустив Playbook.
    
 
-10) 
-
+10) Готовый playbook выложите в свой репозиторий, поставьте тег 08-ansible-03-yandex на фиксирующий коммит, в ответ предоставьте ссылку на него. 
+    https://github.com/Byzgaev-I/Ansible-yandex/releases/tag/08-ansible-03-yandex
 
 
 
