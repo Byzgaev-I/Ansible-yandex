@@ -40,7 +40,7 @@
 
  <details> 
     
- ```
+```
 root@Debian-New12:/home/byzgaev12new/ansible-yandex# ansible-lint site.yml
 WARNING  Listing 2 violation(s) that are fatal  
 site.yml:48 Task/Handler: Modify Clickhouse config.xml  
@@ -53,7 +53,7 @@ Rule Violation Summary
      1 args[module]              syntax, experimental (warning)   
 
 Failed after min profile: 1 failure(s), 1 warning(s) on 1 files.  
-</details>```
+```
   
   
 
