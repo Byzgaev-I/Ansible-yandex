@@ -38,7 +38,6 @@
 
 5) Запустиk ansible-lint site.yml и исправил ошибки.
 
- <details>    
 ```
 root@Debian-New12:/home/byzgaev12new/ansible-yandex# ansible-lint site.yml
 WARNING  Listing 2 violation(s) that are fatal  
