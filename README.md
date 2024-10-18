@@ -249,7 +249,7 @@ vector                 : ok=13   changed=5    unreachable=0    failed=0    skipp
 - В случае необходимости, вы можете изменить параметры служб ClickHouse, Vector и Lighthouse, редактируя соответствующие файлы конфигурации и перезапустив Playbook.
    
 
-
+10) 
 
 
 
