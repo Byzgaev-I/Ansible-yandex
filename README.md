@@ -39,7 +39,7 @@
 5) Запустиk ansible-lint site.yml и исправил ошибки.
 
    <details>
- 
+ <details> и </details> 
   
   
 
