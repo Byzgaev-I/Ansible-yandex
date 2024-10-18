@@ -34,7 +34,7 @@
 3) Tasks должны: скачать статику LightHouse, установить Nginx или любой другой веб-сервер, настроить его конфиг для открытия LightHouse, запустить веб-сервер.
 4) Подготовил свой inventory-файл prod.yml.
    
-   ![site.yml](https://github.com/Byzgaev-I/Ansible-yandex/blob/main/site.yml)
+   [site.yml](https://github.com/Byzgaev-I/Ansible-yandex/blob/main/site.yml)
 
 
 
