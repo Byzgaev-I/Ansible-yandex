@@ -54,7 +54,7 @@ Rule Violation Summary
 
 Failed after min profile: 1 failure(s), 1 warning(s) on 1 files.  
 ```
-[site.yml](https://github.com/Byzgaev-I/Ansible-yandex/blob/main/2ansible-lint%20site%20.png)  
+![image.jpg](https://github.com/Byzgaev-I/Ansible-yandex/blob/main/site.yml)  
   
 
 
