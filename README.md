@@ -24,4 +24,4 @@
 
 -  Подготовил в Yandex Cloud три хоста: для clickhouse, для vector и для lighthouse.
 
-   ![image.jpg](https://github.com/Byzgaev-I/Ansible-yandex/blob/main/1.png)
+   ![image.jpg](https://github.com/Byzgaev-I/Ansible-yandex/blob/main/VM%20Yandex.png)
