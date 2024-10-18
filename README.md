@@ -41,19 +41,17 @@
  <details> 
 
 root@Debian-New12:/home/byzgaev12new/ansible-yandex# ansible-lint site.yml
-WARNING  Listing 2 violation(s) that are fatal
-site.yml:48 Task/Handler: Modify Clickhouse config.xml
-yaml[line-length]: Line too long (187 > 160 characters)
-site.yml:72
-
-Read documentation for instructions on how to ignore specific rule violations.
-
-                     Rule Violation Summary                     
+WARNING  Listing 2 violation(s) that are fatal  
+site.yml:48 Task/Handler: Modify Clickhouse config.xml  
+yaml[line-length]: Line too long (187 > 160 characters)  
+site.yml:72  
+Read documentation for instructions on how to ignore specific rule violations.    
+Rule Violation Summary                     
  count tag               profile rule associated tags           
      1 yaml[line-length] basic   formatting, yaml               
-     1 args[module]              syntax, experimental (warning) 
+     1 args[module]              syntax, experimental (warning)   
 
-Failed after min profile: 1 failure(s), 1 warning(s) on 1 files.
+Failed after min profile: 1 failure(s), 1 warning(s) on 1 files.  
 </details> 
   
   
