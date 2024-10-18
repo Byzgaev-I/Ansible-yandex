@@ -1,0 +1,4 @@
+---
+all_clickhouse_table: "logs_table"
+all_clickhouse_db: "logs"
+all_clickhouse_url: "http://89.169.156.102:8123"

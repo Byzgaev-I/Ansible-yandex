@@ -1,0 +1,148 @@
+---
+- name: Install Clickhouse
+  hosts: clickhouse
+  remote_user: byzgaev
+  gather_facts: false
+  tags: clickhouse
+
+  handlers:
+    - name: Start clickhouse service
+      become: true
+      ansible.builtin.service:
+        name: clickhouse-server
+        state: restarted
+
+  tasks:
+    - name: Create Clickhouse directory
+      ansible.builtin.file:
+        path: "/tmp/clickhouse"
+        state: directory
+        mode: '0755'
+
+    - name: Get Clickhouse distrib
+      ansible.builtin.get_url:
+        url: "https://github.com/ClickHouse/ClickHouse/releases/download/v24.3.12.75-lts/clickhouse-client-24.3.12.75-amd64.tgz"
+        dest: "/tmp/clickhouse.tgz"
+        mode: '0644'
+
+    - name: Extract Clickhouse archive
+      ansible.builtin.unarchive:
+        src: "/tmp/clickhouse.tgz"
+        dest: "/tmp/clickhouse"
+        remote_src: true
+
+    - name: Find extracted deb file
+      ansible.builtin.find:
+        paths: "/tmp/clickhouse"
+        patterns: "*.deb"
+        recurse: true
+      register: clickhouse_deb_files
+
+    - name: Install Clickhouse client
+      become: true
+      ansible.builtin.command:
+        cmd: dpkg -i {{ item.path }}
+      loop: "{{ clickhouse_deb_files.files }}"
+      changed_when: true
+
+    - name: Modify Clickhouse config.xml
+      become: true
+      ansible.builtin.replace:
+        backup: true
+        path: "/etc/clickhouse-server/config.xml"
+        regexp: 'some_pattern'
+        line: 'new_configuration_line'
+      notify: Start clickhouse service
+
+    - name: Flush handlers
+      ansible.builtin.meta: flush_handlers
+
+    - name: Wait for clickhouse-server to become available
+      ansible.builtin.pause:
+        seconds: 30
+        echo: false
+
+    - name: Create database
+      ansible.builtin.command: clickhouse-client --host clickhouse-01 --port 9000 -q 'create database logs;'
+      register: create_db
+      failed_when: create_db.rc != 0 and create_db.rc != 82
+      changed_when: create_db.rc == 0
+
+    - name: Create Clickhouse table
+      ansible.builtin.command: clickhouse-client --host clickhouse-01 --port 9000 -q 'create table logs.{{ all_clickhouse_table }} (message String) ENGINE = MergeTree() ORDER BY tuple();'
+      register: create_table
+      failed_when: create_db.rc != 0 and create_db.rc != 82
+      changed_when: create_table == 0
+
+- name: Vector
+  hosts: vector
+  gather_facts: false
+  remote_user: byzgaev
+  tags: vector
+
+  handlers:
+    - name: Start Vector service
+      become: true
+      ansible.builtin.systemd:
+        daemon_reload: true
+        enabled: false
+        name: vector.service
+        state: restarted
+
+  tasks:
+    - name: Install, configure, and start Vector
+      block:
+        - name: Create vector work directory
+          ansible.builtin.file:
+            path: "{{ vector_workdir }}"
+            state: directory
+            mode: "0755"
+
+        - name: Get Vector distrib
+          ansible.builtin.get_url:
+            url: "https://packages.timber.io/vector/{{ vector_version }}/vector-{{ vector_version }}-{{ vector_os_arch }}-unknown-linux-gnu.tar.gz"
+            dest: "{{ vector_workdir }}/vector-{{ vector_version }}-{{ vector_os_arch }}-unknown-linux-gnu.tar.gz"
+            mode: "0644"
+
+        # Остальные задачи остаются без изменений
+
+- name: Lighthouse
+  hosts: lighthouse
+  gather_facts: false
+  remote_user: user
+  tags: lighthouse
+
+  handlers:
+    - name: Start Lighthouse service
+      become: true
+      ansible.builtin.systemd:
+        daemon_reload: true
+        enabled: false
+        name: nginx.service
+        state: restarted
+
+  tasks:
+    - name: Install, configure, and start Lighthouse
+      block:
+        - name: Pre-install Nginx & Git client
+          become: true
+          ansible.builtin.apt:
+            name: "{{ lighthouse_packages }}"
+            update_cache: true
+
+        - name: Clone Lighthouse source code by Git
+          become: true
+          ansible.builtin.git:
+            repo: "{{ lighthouse_code_src }}"
+            version: "{{ lighthouse_code_src_version }}"
+            dest: "{{ lighthouse_data_dir }}"
+
+        - name: Prepare nginx config
+          become: true
+          ansible.builtin.template:
+            src: "templates/nginx/lighthouse.conf.j2"
+            dest: "/etc/nginx/conf.d/{{ lighthouse_nginx_conf }}"
+            mode: "0644"
+            owner: root
+            group: root
+          notify: Start Lighthouse service
